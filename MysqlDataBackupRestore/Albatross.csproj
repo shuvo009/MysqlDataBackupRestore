@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7AF2307A-2F18-4CD5-B5BD-4E7499FE47D1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MysqlDataBackupRestore</RootNamespace>
+    <AssemblyName>MysqlDataBackupRestore</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AutoBackup.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="DevExpress.Data.v10.1, Version=10.1.5.0, Culture=neutral, PublicKeyToken=940cfcde86f32efd" />
+    <Reference Include="DevExpress.Xpf.Core.v10.1, Version=10.1.5.0, Culture=neutral, PublicKeyToken=940cfcde86f32efd" />
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Menus.XamDataTree.v10.3" />
+    <Reference Include="InfragisticsWPF4.DataManager.v10.3" />
+    <Reference Include="InfragisticsWPF4.DragDrop.v10.3" />
+    <Reference Include="InfragisticsWPF4.Editors.v10.3" />
+    <Reference Include="InfragisticsWPF4.v10.3" />
+    <Reference Include="Microsoft.VisualC" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="Syncfusion.Core, Version=8.404.0.10, Culture=neutral, PublicKeyToken=632609b4d040f6b4" />
+    <Reference Include="Syncfusion.Shared.Wpf, Version=8.404.0.10, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Tools.Wpf, Version=8.404.0.10, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls, Version=2010.1.603.35, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2010.1.603.35, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2010.1.603.35, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
+    <Reference Include="Telerik.Windows.Controls.RibbonBar, Version=2010.1.603.35, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFToolkit.Extended, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Class\NecessaryClass.cs" />
+    <Compile Include="Interfaces\NecessaryElementInterface.cs" />
+    <Compile Include="Setting.xaml.cs">
+      <DependentUpon>Setting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="Windnows\FancyBalloon.xaml.cs">
+      <DependentUpon>FancyBalloon.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Setting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windnows\FancyBalloon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AutoBackup.ico" />
+    <Resource Include="Images\AutoBackup.png" />
+    <Resource Include="Images\blue-button.png" />
+    <Resource Include="Images\Close.png" />
+    <Resource Include="Images\DatabaseSetting.png" />
+    <Resource Include="Images\EmailSetting.png" />
+    <Resource Include="Images\Exit.png" />
+    <Resource Include="Images\GeneralSetting.png" />
+    <Resource Include="Images\Maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\MyC#Class`s\CompressAndDeCompress\CompressAndDeCompress\CompressAndDeCompress.csproj">
+      <Project>{010C51C9-33EB-461E-B0E2-751315789B23}</Project>
+      <Name>CompressAndDeCompress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\MyC#Class`s\InternetAccessories\InternetAccessories\InternetAccessories.csproj">
+      <Project>{D41BFCA6-7595-454E-A76A-4DF6A83AE05B}</Project>
+      <Name>InternetAccessories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\MyC#Class`s\MysqlDataBackup\MysqlDataBackup\MysqlDataBaseBackupAndRestore.csproj">
+      <Project>{DD5A89E9-12AE-4525-A3B8-DFA5A4013DFC}</Project>
+      <Name>MysqlDataBaseBackupAndRestore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\MyC#Class`s\ProcestaEncryptAndDescript\ProcestaEncryptAndDescript\ProcestaEncryptAndDescript.csproj">
+      <Project>{780604F1-35A9-4E44-924F-D913F322674C}</Project>
+      <Name>ProcestaEncryptAndDescript</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\MyC#Class`s\ProcestaNecessaryFunction\ProcestaNecessaryFunction\ProcestaNecessaryFunction.csproj">
+      <Project>{2EA8502B-BD12-4F2F-BC33-CC17D0ADD993}</Project>
+      <Name>ProcestaNecessaryFunction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\MyC#Class`s\ProcestaRegeditClasss\ProcestaRegeditClasss\ProcestaRegeditClasss.csproj">
+      <Project>{25752AF7-BF98-4058-8C29-817CB2325B70}</Project>
+      <Name>ProcestaRegeditClasss</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AlbatrossVaribales\AlbatrossVaribales.csproj">
+      <Project>{E32AFBFD-E748-44B0-84EB-E2203457D119}</Project>
+      <Name>AlbatrossVaribales</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SkyDrive.png" />
+    <Resource Include="Images\upload.png" />
+    <Resource Include="Nodes\Nodes.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

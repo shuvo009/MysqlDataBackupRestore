@@ -1,0 +1,123 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:NotifyIcon="http://www.hardcodet.net/taskbar"
+        xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:Telerik_Windows_Controls_Chromes="clr-namespace:Telerik.Windows.Controls.Chromes;assembly=Telerik.Windows.Controls" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" mc:Ignorable="d" x:Class="MysqlDataBackupRestore.MainWindow"
+        Title="Mysql Database Backup And Restore" Height="420" Width="619" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="AutoBackup.ico" StateChanged="WindnowSizeChangeNotifyIcon" Loaded="AlbatrossMainWindoLoad">
+	<Window.Resources>
+		<Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<Image Source="Images/blue-button.png" Stretch="Fill"/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	<Window.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+	</Window.Triggers>
+    <Grid>
+    	<Grid.Background>
+    		<RadialGradientBrush GradientOrigin="1.005,1.003">
+    			<GradientStop Color="#FF0098F9" Offset="0.03"/>
+    			<GradientStop Color="#FFC8C8C8" Offset="0.707"/>
+    			<GradientStop Color="#FF0F6FAD" Offset="1"/>
+    		</RadialGradientBrush>
+    	</Grid.Background>
+    	<Rectangle Height="46" Margin="119,0,0,0" VerticalAlignment="Top" RadiusY="8.5" RadiusX="8.5">
+    		<Rectangle.Fill>
+    			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    				<GradientStop Color="#FF1AFF28" Offset="0"/>
+    				<GradientStop Color="#0000D20D" Offset="1"/>
+    				<GradientStop Color="#FF01930A" Offset="0.5"/>
+    			</LinearGradientBrush>
+    		</Rectangle.Fill>
+    	</Rectangle>
+    	<TextBlock x:Name="LabelAutoBackUpOnOff" Height="18" Margin="94,46,0,0" TextWrapping="Wrap" Text="ON OFF" VerticalAlignment="Top" HorizontalAlignment="Left" Width="53" FontSize="14.667" Foreground="#FF37FF00"/>
+    	<TextBlock Height="25" Margin="185.167,4.5,300.833,0" TextWrapping="Wrap" Text="Time Reaming : " VerticalAlignment="Top" FontSize="18.667" Width="127" Foreground="Gainsboro"/>
+    	<TextBlock x:Name="LabelAutoBackUpTimeRemaining" Height="Auto"  Margin="0,9.25,80,0" TextWrapping="WrapWithOverflow"  Text="00:00:00 AM" VerticalAlignment="Top" HorizontalAlignment="Right" Width="214.833" FontSize="24" FontFamily="Digital-7">
+    		<TextBlock.Foreground>
+    			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    				<GradientStop Color="#FFFF7474" Offset="0"/>
+    				<GradientStop Color="#FF6E0000" Offset="1"/>
+    			</LinearGradientBrush>
+    		</TextBlock.Foreground>
+    	</TextBlock>
+    	<Image HorizontalAlignment="Left" Margin="21,8,0,0" Source="Images/AutoBackup.png" Stretch="Fill" Width="68" Height="68" VerticalAlignment="Top"/>
+    	<Button x:Name="ButtonAutoBackUp" Content=" Backup" Margin="21,117,0,0" Style="{DynamicResource ButtonStyle1}" FontSize="16" HorizontalAlignment="Left" Width="136" Height="50" VerticalAlignment="Top" Cursor="Hand" Click="TabAutoBackupClick" Foreground="White"/>
+    	<Button x:Name="ButtonRestore" Content="Restore" Margin="21,183,0,159" Style="{DynamicResource ButtonStyle1}" FontSize="16" HorizontalAlignment="Left" Width="136" Cursor="Hand" Foreground="White" Click="ButtonRestoreClick"/>
+    	<Grid x:Name="PanelAutoBackUp" Margin="194,42.5,17,31" d:IsHidden="True" Visibility="Hidden" d:IsLocked="True">
+    		<Button x:Name="AutoBackUpButtonStart" Content="Instant Backup" Margin="113,117.5,136,155" Style="{DynamicResource ButtonStyle1}" FontSize="16" Cursor="Hand" Foreground="White" Click="AutoBackUpButtonStartClick"/>
+    		<telerik:RadProgressBar x:Name="DatabaseBackupProgressBar" Height="23" Margin="0,0,8,0" VerticalAlignment="Bottom" Minimum="1" Background="{x:Null}" BorderBrush="{x:Null}" SmallChange="1.1" Value="0" Maximum="70">
+    			<telerik:RadProgressBar.Foreground>
+    				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    					<GradientStop Color="#FF90B5FF" Offset="1"/>
+    					<GradientStop Color="#FF90B5FF" Offset="0"/>
+    					<GradientStop Color="#FF0B3864" Offset="0.5"/>
+    					<GradientStop Color="#FF3A74E5" Offset="0.16"/>
+    					<GradientStop Color="#FF356CD5" Offset="0.84"/>
+    				</LinearGradientBrush>
+    			</telerik:RadProgressBar.Foreground>
+    		</telerik:RadProgressBar>
+    	</Grid>
+    	<Grid x:Name="PanelRestore" Margin="190,84,17,31" Visibility="Hidden" d:IsHidden="True" d:IsLocked="True">
+    		<TextBlock x:Name="RestoreLabelFilePath" Margin="8,4,67,0" TextWrapping="Wrap" Height="25" VerticalAlignment="Top" FontSize="13.333" Foreground="Black"/>
+    		<Button x:Name="RestoreButtonStart" Content="Strat" Margin="28,0,0,80.677" Style="{DynamicResource ButtonStyle1}" FontSize="16" Cursor="Hand" HorizontalAlignment="Left" Width="140" Height="36" VerticalAlignment="Bottom" Foreground="White" Click="RestoreButtonStartCLick"/>
+    		<Button x:Name="RestoreButtonBrows" Content="Brows" Margin="0,8,8,0" Style="{DynamicResource ButtonStyle1}" FontSize="13.333" Cursor="Hand" HorizontalAlignment="Right" Width="55" Height="19" VerticalAlignment="Top" Foreground="White" Click="RestoreButtonBrowsClick"/>
+    		<TextBlock Margin="0,81.563,79,0" TextWrapping="Wrap" Text="File Informathion" FontSize="13.333" Foreground="Black" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="104"/>
+    		<TextBlock Margin="0,108.563,135,0" TextWrapping="Wrap" Text="Name :" FontSize="13.333" Foreground="Black" Height="18" VerticalAlignment="Top" HorizontalAlignment="Right" Width="48"/>
+    		<TextBlock x:Name="RestoreLabelFileName" Margin="0,108.563,0,0" TextWrapping="Wrap" FontSize="13.333" Foreground="Black" HorizontalAlignment="Right" Width="119" Height="20.76" VerticalAlignment="Top"/>
+    		<TextBlock x:Name="RestoreLabelCreateDate" Margin="0,130.499,0,123.501" TextWrapping="Wrap" FontSize="13.333" Foreground="Black" HorizontalAlignment="Right" Width="119"/>
+    		<TextBlock Margin="200,0,135,98.326" TextWrapping="Wrap" Text="Read Only :" FontSize="13.333" Foreground="Black" Height="25" VerticalAlignment="Bottom"/>
+    		<TextBlock x:Name="RestoreLabelReadOnly_" Margin="0,0,48,98.326" TextWrapping="Wrap" FontSize="13.333" Foreground="Black" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="71"/>
+    		<TextBlock Margin="191,130.499,135,129.001" TextWrapping="Wrap" Text="Create Date :" FontSize="13.333" Foreground="Black"/>
+    		<telerik:RadProgressBar x:Name="restoreProgressBar" Height="23" VerticalAlignment="Bottom" Minimum="1" Background="{x:Null}" BorderBrush="{x:Null}" SmallChange="1.1" Value="1" Margin="0,0,8,0" Maximum="80">
+    			<telerik:RadProgressBar.Foreground>
+    				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    					<GradientStop Color="#FF90B5FF" Offset="1"/>
+    					<GradientStop Color="#FF90B5FF" Offset="0"/>
+    					<GradientStop Color="#FF0B3864" Offset="0.5"/>
+    					<GradientStop Color="#FF3A74E5" Offset="0.16"/>
+    					<GradientStop Color="#FF356CD5" Offset="0.84"/>
+    				</LinearGradientBrush>
+    			</telerik:RadProgressBar.Foreground>
+    		</telerik:RadProgressBar>
+    	</Grid>
+    	<Button x:Name="ButtonSetting" Content="Setting" Margin="0,8,8,0" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Right" Width="68" Cursor="Hand" Height="20" VerticalAlignment="Top" Foreground="White" Click="ButtonSettingClick"/>
+        <!--Notify Icon-->
+        <NotifyIcon:TaskbarIcon x:Name="AlbatrossNoitify" ToolTipText="Helo World"  Visibility="Visible" Margin="0,362,543,0" TrayMouseDoubleClick="AlbatrossDoubleClick" IconSource="AutoBackup.ico">
+			 <NotifyIcon:TaskbarIcon.TrayToolTip>
+			        <Border Background="White" BorderBrush="Orange" BorderThickness="2" CornerRadius="4" Opacity="0.8" Width="160" Height="40">
+			          <TextBlock Text="Albatross 1.0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+			        </Border>
+      		</NotifyIcon:TaskbarIcon.TrayToolTip>
+		<NotifyIcon:TaskbarIcon.ContextMenu>
+				<ContextMenu>
+					<MenuItem x:Name="MenuOpen" Header="Open" ToolTip="Maximize Albatross" Click="MenuItemAlbatrossOpen">
+						<MenuItem.Icon>
+							<Image Source="/Images/Exit.png"/>
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem x:Name="MenuExit" Header="Exit" ToolTip="Close Albatross" Click="MenuItemAlbatrossExit">
+						<MenuItem.Icon>
+							<Image Source="/Images/Exit.png"/>
+						</MenuItem.Icon>
+					</MenuItem>
+				</ContextMenu>
+			</NotifyIcon:TaskbarIcon.ContextMenu>
+ 			
+		</NotifyIcon:TaskbarIcon>
+    </Grid>
+</Window>

@@ -1,0 +1,229 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="MysqlDataBackupRestore.Setting"
+	x:Name="Window"
+	Title="Setting"
+	Width="550" Height="384" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" Icon="AutoBackup.ico" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" ShowInTaskbar="False" ResizeMode="NoResize">
+	<Window.Resources>
+		<Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<Image Source="Images/blue-button.png" Stretch="Fill"/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+
+	<Grid x:Name="LayoutRoot">
+       
+		<Grid.Background>
+			<RadialGradientBrush GradientOrigin="1.005,1.003">
+				<GradientStop Color="#FF0098F9" Offset="0.03"/>
+				<GradientStop Color="#FFC8C8C8" Offset="0.707"/>
+				<GradientStop Color="#FF0F6FAD" Offset="1"/>
+			</RadialGradientBrush>
+		</Grid.Background>
+		<telerik:RadTreeView x:Name="SettingTreeView" Margin="0,27,0,95" HorizontalAlignment="Left" Width="147" Selected="SettingTreeViewSelect">
+            <telerik:RadTreeViewItem x:Name="TreeViewGeneral" Header="General" DefaultImageSrc="/Images/GeneralSetting.png">
+            <telerik:RadTreeViewItem x:Name="TreeViewGeneralAutoBackup" Header="Auto Backup" DefaultImageSrc="/Images/AutoBackup.png" /> 
+			</telerik:RadTreeViewItem>
+			<telerik:RadTreeViewItem x:Name="TreeViewDatabase" Header="Database" DefaultImageSrc="/Images/DatabaseSetting.png"/>
+			<telerik:RadTreeViewItem x:Name="TreeViewUpload" Header="Upload" DefaultImageSrc="/Images/upload.png">
+				<telerik:RadTreeViewItem x:Name="TreeViewEmail" Header="E-Mail" DefaultImageSrc="/Images/EmailSetting.png"/>
+				<telerik:RadTreeViewItem x:Name="TreeViewSkyDrive" Header="Sky Drive" DefaultImageSrc="/Images/SkyDrive.png"/>
+			</telerik:RadTreeViewItem>
+        </telerik:RadTreeView>
+		<TextBlock Margin="8,7,0,0" TextWrapping="Wrap" Text="Setting Panel" Height="20" VerticalAlignment="Top" FontSize="13.333" Foreground="White" HorizontalAlignment="Left" Width="82"/>
+		<Grid x:Name="PanelGeneral" Margin="177,27,7,8" Height="311" Visibility="Visible">
+			<CheckBox x:Name="GeneralCheckBoxStartAtStartUp" Content="Start at Startup" Margin="33.667,152.667,0,140.598" FontSize="13.333" Foreground="Black" Checked="GeneralCheckBoxStartAtStartUpChecked" Unchecked="GeneralCheckBoxStartAtStartUpUnChecked" HorizontalAlignment="Left" Width="107.42" d:LayoutOverrides="Height"/>
+			<CheckBox x:Name="GeneralCheckBoxSkyDive" Content="Upload In Sky Drive" Margin="33.667,96.466,0,0" FontSize="13.333" Foreground="Black" Unchecked="GeneralCheckBoxSkyDiveUnchecked" VerticalAlignment="Top" HorizontalAlignment="Left" Width="141.333" Checked="GeneralCheckBoxSkyDiveChecked" Visibility="Hidden"/>
+			<CheckBox x:Name="GeneralCheckBoxSaveLockComputer_" Content="Save Local Computer" Margin="33.667,28,0,0" FontSize="13.333" Foreground="Black" Unchecked="GeneralCheckBoxSaveLockComputerUnchecked" VerticalAlignment="Top" HorizontalAlignment="Left" Width="141.333" Checked="GeneralCheckBoxSaveLockComputerChecked"/>
+			<CheckBox x:Name="GeneralCheckBoxAttachWithMail" Content="Attach With E-mail" Margin="33.667,74.733,0,0" FontSize="13.333" Foreground="Black" Unchecked="GeneralCheckBoxAttachWithMailUnchecked" VerticalAlignment="Top" HorizontalAlignment="Left" Width="141.333" Checked="GeneralCheckBoxAttachWithMailChecked"/>
+			<TextBlock HorizontalAlignment="Left" Height="16" Margin="8,8,0,0" TextWrapping="Wrap" Text="After Backup :" VerticalAlignment="Top" Width="75.333"/>
+			<TextBlock HorizontalAlignment="Left" Margin="8,126.999,0,0" TextWrapping="Wrap" Text="Albatross Start:" Width="83.333" Height="16" VerticalAlignment="Top"/>
+			<Button x:Name="GeneralButtonBrows" Content="Brows" Margin="0,70.733,0,0" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Height="16.667" VerticalAlignment="Top" Foreground="White" HorizontalAlignment="Right" Width="47.333" Click="GeneralButtonBrowsCLick"/>
+			<TextBlock HorizontalAlignment="Left" Margin="67,51.733,0,0" TextWrapping="Wrap" Text="Save Folder :" Width="74.087" Height="16" VerticalAlignment="Top"/>
+			<TextBlock x:Name="generalLabelSavePath" Margin="145.087,50.733,8,0" TextWrapping="Wrap" Text="Save Folder :" Height="16" VerticalAlignment="Top"/>
+		</Grid>
+		<Grid x:Name="PanelDatabase" Margin="151,7,7,8" d:IsHidden="True" Visibility="Hidden" d:IsLocked="True">
+			<dxe:TextEdit Margin="133,74,100.5,0" x:Name="DatabaseTextBoxUserName" VerticalAlignment="Top" FontSize="14.667" Height="23" />
+			<TextBlock Margin="49,75,0,0" TextWrapping="Wrap" Text="User Name :" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80" FontSize="14.667" Foreground="#FF252525"/>
+			<TextBlock Margin="60,107,0,0" TextWrapping="Wrap" Text="Password :" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" FontSize="14.667" Foreground="#FF252525"/>
+			<TextBlock Margin="73,138,0,0" TextWrapping="Wrap" Text="Host IP :" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="56" FontSize="14.667" Foreground="#FF252525"/>
+			<TextBlock Margin="36,0,0,142.5" TextWrapping="Wrap" Text="Port Number :" HorizontalAlignment="Left" Width="93" FontSize="14.667" Foreground="#FF252525" Height="20" VerticalAlignment="Bottom"/>
+			<PasswordBox x:Name="DatabasePasswordBoxPassword" Height="23" Margin="133,105,100.5,0" VerticalAlignment="Top">
+				<PasswordBox.BorderBrush>
+					<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+						<GradientStop Color="#FF2A4375"/>
+						<GradientStop Color="#FF5C84C1" Offset="1"/>
+					</LinearGradientBrush>
+				</PasswordBox.BorderBrush>
+				<PasswordBox.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFD1D9E8" Offset="0.011"/>
+						<GradientStop Color="#FFE6EAF2" Offset="0.2"/>
+						<GradientStop Color="#FFFEFEFE" Offset="0.984"/>
+					</LinearGradientBrush>
+				</PasswordBox.Background>
+			</PasswordBox>
+			<dxe:TextEdit Margin="133,136,100.5,0" x:Name="DatabaseTextBoxHostIP" VerticalAlignment="Top" FontSize="14.667" Height="23" />
+			<TextBlock Margin="18.5,0,0,112.5" TextWrapping="Wrap" Text="Database Name :" HorizontalAlignment="Left" Width="110.5" FontSize="14.667" Foreground="#FF252525" Height="20" VerticalAlignment="Bottom"/>
+			<dxe:TextEdit Margin="133,0,100.5,142" x:Name="DatabaseTextBoxPortNumber" FontSize="14.667" Height="23" VerticalAlignment="Bottom" />
+			<dxe:TextEdit Margin="133,0,100.5,110.5" x:Name="DatabaseTextBoxDataBaseName" FontSize="14.667" Height="23" VerticalAlignment="Bottom" d:LayoutOverrides="Height" />
+			<Button x:Name="DatabaseButtonUpdate" Content="Update" Margin="170.5,0,132.5,81" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Height="24" VerticalAlignment="Bottom" Foreground="White" Click="DatabaseButtonUpdateClick"/>
+		</Grid>
+		<Grid x:Name="PanelAutoBackup" Margin="151,27,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="312.75" Width="383" d:IsHidden="True" d:IsLocked="True">
+			<dxe:CheckEdit x:Name="AutoBackupCheckBoxONOFF" Margin="8,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="159" Content="AutoBackup ON or OFF" FontSize="13.333" Checked="AutoBackupCheckBoxONOFFChecked" Unchecked="AutoBackupCheckBoxONOFFUnChecked"/>
+			<Grid x:Name="AutoBackupPanelSetting" Margin="23,53,24,44" HorizontalAlignment="Center" VerticalAlignment="Center" Height="209.5" Width="335.706">
+				<RadioButton x:Name="AutoBackupSettingRadioButtonHourly" Content="Hourly" Margin="33,18,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="13.333" Checked="AutoBackupSettingRadioButtonHourlyChecked" Unchecked="AutoBackupSettingRadioButtonHourlyUnChecked"/>
+				<RadioButton x:Name="AutoBackupSettingRadioButtonDaily" Content="Daily" Margin="98,18,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="13.333" Checked="AutoBackupSettingRadioButtonDailyChecked" Unchecked="AutoBackupSettingRadioButtonDailyUnchecked"/>
+				<RadioButton x:Name="AutoBackupSettingRadioButtonWeekly" Content="Weekly" Margin="156,18,116,0" VerticalAlignment="Top" FontSize="13.333" Checked="AutoBackupSettingRadioButtonWeeklyChecked" Unchecked="AutoBackupSettingRadioButtonWeeklyUnChecked"/>
+				<RadioButton x:Name="AutoBackupSettingRadioButtonMonthely" Content="Monthly" Margin="0,18,42.833,0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="13.333" Unchecked="AutoBackupSettingRadioButtonMonthelyUnChecked" Checked="AutoBackupSettingRadioButtonMonthelyChecked"/>
+				<Button x:Name="AutoBackupButtonUpdate" Content="Update" Margin="0,0,92,8" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Height="24" VerticalAlignment="Bottom" Foreground="White" Click="AutoBackupButtonUpdateClick" HorizontalAlignment="Right" Width="73"/>
+				<Grid x:Name="AutoBackupPanelHourly" Margin="33,70.417,50.52,92.417" Visibility="Hidden" d:IsHidden="True" d:IsLocked="True">
+					<dxe:ComboBoxEdit x:Name="AutobackUpComboBoxHourly" Margin="94.186,17.999,8,0" VerticalAlignment="Top" IsTextEditable="False" Text="Every Hour">
+						<dxe:ComboBoxEditItem Content="Every Hour"/>
+						<dxe:ComboBoxEditItem Content="After 2 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 3 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 4 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 5 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 6 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 7 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 8 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 9 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 10 Hour"/>
+						<dxe:ComboBoxEditItem Content="After 11 Hour"/>
+					</dxe:ComboBoxEdit>
+					<TextBlock Margin="13.999,19.333,0,0" TextWrapping="Wrap" Text="Start Time :" FontSize="13.333" HorizontalAlignment="Left" Width="68.333" Height="17" VerticalAlignment="Top"/>
+				</Grid>
+				<Grid x:Name="AutobackUpPanelDaily" Margin="28.519,81.417,52.52,38.083" Visibility="Hidden" d:IsHidden="True" d:IsLocked="True">
+					<dxe:ComboBoxEdit x:Name="AutobackUpComboBoxDaily" Margin="98.332,6.664,6.335,0" VerticalAlignment="Top" IsTextEditable="False" Text="Every Day">
+						<dxe:ComboBoxEditItem Content="Every Day"/>
+						<dxe:ComboBoxEditItem Content="After 2 Day"/>
+						<dxe:ComboBoxEditItem Content="After 3 Day"/>
+						<dxe:ComboBoxEditItem Content="After 4 Day"/>
+						<dxe:ComboBoxEditItem Content="After 5 Daty"/>
+						<dxe:ComboBoxEditItem Content="After 6 Day"/>
+					</dxe:ComboBoxEdit>
+					<TextBlock HorizontalAlignment="Left" Height="17" Margin="18.48,8.25,0,0" TextWrapping="Wrap" Text="Start Time :" VerticalAlignment="Top" Width="68.333" FontSize="13.333"/>
+					<telerik:RadTimePicker x:Name="AutobackUpTimeDaily" Margin="98.332,42.583,6.335,0" VerticalAlignment="Top">
+						<telerik:RadTimePicker.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFC1CBE1" Offset="0.007"/>
+								<GradientStop Color="#FFFEFEFE" Offset="0.986"/>
+							</LinearGradientBrush>
+						</telerik:RadTimePicker.Background>
+						<telerik:RadTimePicker.BorderBrush>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF233D71" Offset="0"/>
+								<GradientStop Color="#FF4A75AE" Offset="0.991"/>
+							</LinearGradientBrush>
+						</telerik:RadTimePicker.BorderBrush>
+					</telerik:RadTimePicker>
+					<TextBlock Margin="66.513,42.916,0,30.084" TextWrapping="Wrap" Text="At :" FontSize="13.333" HorizontalAlignment="Left" Width="20.3"/>
+				</Grid>
+				<Grid x:Name="AutobackupPanelWeekly" Margin="33.853,80.417,54.833,48.583" Visibility="Hidden" d:IsHidden="True" d:IsLocked="True">
+					<dxe:ComboBoxEdit x:Name="AutobackUpComboBoxWeekly" Margin="92.667,7.75,4.5,0" VerticalAlignment="Top" IsTextEditable="False" Text="Evert Week">
+						<dxe:ComboBoxEditItem Content="Evert Week"/>
+						<dxe:ComboBoxEditItem Content="After 2 Week"/>
+						<dxe:ComboBoxEditItem Content="After 3 Week"/>
+						<dxe:ComboBoxEditItem Content="After 4 Week"/>
+						<dxe:ComboBoxEditItem Content="After 5 Week"/>
+					</dxe:ComboBoxEdit>
+					<telerik:RadTimePicker x:Name="AutoBackupTimeWeekly" Margin="93.167,43.5,4.5,0" VerticalAlignment="Top">
+						<telerik:RadTimePicker.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFC1CBE1" Offset="0.007"/>
+								<GradientStop Color="#FFFEFEFE" Offset="0.986"/>
+							</LinearGradientBrush>
+						</telerik:RadTimePicker.Background>
+						<telerik:RadTimePicker.BorderBrush>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF233D71" Offset="0"/>
+								<GradientStop Color="#FF4A75AE" Offset="0.991"/>
+							</LinearGradientBrush>
+						</telerik:RadTimePicker.BorderBrush>
+					</telerik:RadTimePicker>
+					<TextBlock HorizontalAlignment="Left" Height="17" Margin="13.374,9.25,0,0" TextWrapping="Wrap" Text="Start Time :" VerticalAlignment="Top" Width="68.333" FontSize="13.333"/>
+					<TextBlock HorizontalAlignment="Left" Margin="61.157,0,0,19.5" TextWrapping="Wrap" Text="At :" Width="21.3" FontSize="13.333" Height="17" VerticalAlignment="Bottom"/>
+				</Grid>
+				<Grid x:Name="AutoBackupPanelMonthly" Margin="46.833,78.417,50.52,49.083" Visibility="Hidden" d:IsHidden="True" d:IsLocked="True">
+					<dxe:ComboBoxEdit x:Name="AutoBackupComboBoxMonthly" Margin="79.667,9.833,8.686,0" VerticalAlignment="Top" IsTextEditable="False" Text="Every Month">
+						<dxe:ComboBoxEditItem Content="Every Month"/>
+						<dxe:ComboBoxEditItem Content="After 2 Month"/>
+						<dxe:ComboBoxEditItem Content="After 3 Month"/>
+						<dxe:ComboBoxEditItem Content="After 4 Month"/>
+					</dxe:ComboBoxEdit>
+					<telerik:RadTimePicker x:Name="AutoBackupTimeBoxMonthely" Margin="79.667,45.583,8.686,0" VerticalAlignment="Top">
+						<telerik:RadTimePicker.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFC1CBE1" Offset="0.007"/>
+								<GradientStop Color="#FFFEFEFE" Offset="0.986"/>
+							</LinearGradientBrush>
+						</telerik:RadTimePicker.Background>
+						<telerik:RadTimePicker.BorderBrush>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF233D71" Offset="0"/>
+								<GradientStop Color="#FF4A75AE" Offset="0.991"/>
+							</LinearGradientBrush>
+						</telerik:RadTimePicker.BorderBrush>
+					</telerik:RadTimePicker>
+					<TextBlock HorizontalAlignment="Left" Height="17" Margin="0.334,11.083,0,0" TextWrapping="Wrap" Text="Start Time :" VerticalAlignment="Top" Width="68.333" FontSize="13.333"/>
+					<TextBlock HorizontalAlignment="Left" Height="17" Margin="48.334,0,0,19.167" TextWrapping="Wrap" Text="At :" VerticalAlignment="Bottom" Width="19.833" FontSize="13.333"/>
+				</Grid>
+			</Grid>
+			<TextBlock HorizontalAlignment="Left" Height="17" Margin="27.149,31,0,0" TextWrapping="Wrap" Text="Start at :" VerticalAlignment="Top" Width="49.666" FontSize="13.333"/>
+			<TextBlock x:Name="AutoBackupLabelStartAt" Height="17" Margin="80.815,31,153.185,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13.333"/>
+		</Grid>
+		<Grid x:Name="PanelEmail" Margin="166,83,8,108" Visibility="Hidden" d:IsHidden="True" d:IsLocked="True">
+			<dxe:TextEdit x:Name="EmailTextBoxTo" Margin="38.667,35.326,136.667,0" VerticalAlignment="Top" FontSize="14.667" d:LayoutOverrides="VerticalAlignment"/>
+			<dxe:ComboBoxEdit x:Name="EmailComboBoxTo" Margin="0,35.337,8,0" VerticalAlignment="Top" Text="@yahoo.com" FontSize="14.667" IsTextEditable="False" Height="26" HorizontalAlignment="Right" Width="120.667" d:LayoutOverrides="VerticalAlignment">
+				<dxe:ComboBoxEditItem Content="@live.com"/>
+				<dxe:ComboBoxEditItem Content="@hotmail.com"/>
+				<dxe:ComboBoxEditItem Content="@gmail.com"/>
+				<dxe:ComboBoxEditItem Content="@lycos.com"/>
+				<dxe:ComboBoxEditItem Content="@aol.com"/>
+				<dxe:ComboBoxEditItem Content="@mail.com"/>
+				<dxe:ComboBoxEditItem Content="@yahoo.com"/>
+			</dxe:ComboBoxEdit>
+			<TextBlock HorizontalAlignment="Left" Height="16" Margin="14.667,39.339,0,0" TextWrapping="Wrap" Text="To :" VerticalAlignment="Top" Width="20" d:LayoutOverrides="VerticalAlignment"/>
+			<Button x:Name="EmailButtonUpdate" Content="Update" Margin="137.333,0,149.667,31" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Height="24" VerticalAlignment="Bottom" Foreground="White" Click="EmailButtonUpdateClick" d:LayoutOverrides="VerticalAlignment"/>
+		</Grid>
+		<Grid x:Name="PanelSkyDrive" Margin="151,95,32,95" d:IsHidden="True" Visibility="Hidden" IsEnabled="False" d:IsLocked="True">
+			<PasswordBox x:Name="SkyDrivePasswordBoxPassword" Margin="125,59.998,76,0" Height="24" VerticalAlignment="Top">
+				<PasswordBox.BorderBrush>
+					<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+						<GradientStop Color="#FF2A4376"/>
+						<GradientStop Color="#FF5C84C1" Offset="1"/>
+					</LinearGradientBrush>
+				</PasswordBox.BorderBrush>
+				<PasswordBox.Background>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFD2DAE9" Offset="0.008"/>
+						<GradientStop Color="#FFE6EAF2" Offset="0.208"/>
+						<GradientStop Color="#FFFDFDFE" Offset="0.969"/>
+					</LinearGradientBrush>
+				</PasswordBox.Background>
+			</PasswordBox>
+			<dxe:TextEdit x:Name="SkyDriveTextBoxEmail" Margin="125,25.827,76,0" VerticalAlignment="Top" Height="24"/>
+			<TextBlock HorizontalAlignment="Left" Height="20" Margin="29.339,27.334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" FontSize="14.667" Foreground="#FFF1F1F1"><Run Text="Live E-Mail :"/><LineBreak/><Run/></TextBlock>
+			<Button x:Name="SkyDriveButtonUpdate" Content="Update" Margin="168,0,110,32" Style="{DynamicResource ButtonStyle1}" Cursor="Hand" Foreground="White" Click="SkyDriveButtonUpdateClick" Height="24" VerticalAlignment="Bottom"/>
+			<TextBlock HorizontalAlignment="Left" Margin="39.667,61.997,0,0" TextWrapping="Wrap" Width="70" FontSize="14.667" Foreground="#FFF1F1F1" Height="20" VerticalAlignment="Top"><Run Text="Password :"/><LineBreak/><Run/></TextBlock>
+		</Grid>
+    </Grid>
+</Window>
